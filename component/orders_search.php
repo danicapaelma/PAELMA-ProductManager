@@ -7,20 +7,19 @@
 
 <script>
   const searchInput = document.getElementById('orderSearch');
-  const tableRows = document.querySelectorAll('#ordersTable tbody tr');
 
-  function filterOrders() {
+  searchInput.addEventListener('input', () => {
     const query = searchInput.value.toLowerCase().trim();
-    tableRows.forEach(row => {
+    const rows = document.querySelectorAll('#ordersTable tbody tr');
+    rows.forEach(row => {
       const text = row.textContent.toLowerCase();
       row.style.display = text.includes(query) ? '' : 'none';
     });
-  }
+  });
 
   function clearSearch() {
     searchInput.value = '';
-    filterOrders();
+    const rows = document.querySelectorAll('#ordersTable tbody tr');
+    rows.forEach(row => row.style.display = '');
   }
-
-  searchInput.addEventListener('input', filterOrders);
 </script>
