@@ -16,7 +16,7 @@
       <?php else: ?>
         <?php foreach ($orders as $index => $o): ?>
           <tr>
-            <td><?= $index + 1 ?></td>
+            <td><?= $o['id'] ?></td>
             <td><?= htmlspecialchars($o['customer']) ?></td>
             <td><?= date('d F Y', strtotime($o['date'])) ?></td>
             <td>$<?= number_format((float)$o['subtotal'], 2) ?></td>

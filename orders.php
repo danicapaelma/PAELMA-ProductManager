@@ -1,21 +1,15 @@
 <?php
 $page = 'Orders';
-$orders = [];
 $dbError = null;
 
 include 'functions/connectdb.php';
-$mysqli = Connect();
 
-$sql = "SELECT id, customer, `date`, subtotal, tax, total FROM `orders` ORDER BY `date` DESC";
-if ($result = $mysqli->query($sql)) {
-    while ($row = $result->fetch_assoc()) {
-        $orders[] = $row;
-    }
-    $result->free();
-} else {
-    $dbError = 'DB query error: ' . $mysqli->error;
+// Call the helper function
+try {
+    $orders = GetOrders();
+} catch (Exception $e) {
+    $dbError = $e->getMessage();
 }
-$mysqli->close();
 ?>
 <!doctype html>
 <html lang="en">
